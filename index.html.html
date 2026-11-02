@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9월 Late Bird 프로모션 통합 성과 대시보드</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; }
+    .card-shadow { box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05); }
+    .kpi-gradient-1 { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); }
+    .kpi-gradient-2 { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
+    .kpi-gradient-3 { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); }
+    .kpi-gradient-4 { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); }
+  </style>
+</head>
+<body class="text-slate-800 pb-20">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">비수기 시즌 프로모션</span>
+          <span class="text-xs text-slate-400">코드 : PRM0000761 | 캠페인 : 26092w_latebird</span>
+        </div>
+        <h1 class="text-2xl font-bold text-slate-900 mt-1">9월 Late Bird 프로모션 결과보고서 대시보드</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs md:text-sm text-slate-500">
+          <i class="fa-regular fa-calendar-check mr-1 text-blue-600"></i> 기획전 기간: 2026.09.10 ~ 09.30 (출발: 10.12 ~ 11.30)
+        </span>
+        <button onclick="window.print()" class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs md:text-sm font-medium rounded-lg transition flex items-center gap-1.5">
+          <i class="fa-solid fa-print"></i> PDF/인쇄
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 mt-8 space-y-8">
+
+    <!-- 1. 핵심 KPI 카드 요약 -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- KPI 1 -->
+      <div class="kpi-gradient-1 text-white p-6 rounded-2xl card-shadow">
+        <div class="flex justify-between items-start">
+          <p class="text-blue-100 text-sm font-medium">총 예약 매출액</p>
+          <div class="p-2 bg-white/10 rounded-lg"><i class="fa-solid fa-won-sign"></i></div>
+        </div>
+        <h3 class="text-3xl font-extrabold mt-3">2억 1,733만<span class="text-lg font-normal">원</span></h3>
+        <p class="text-xs text-blue-100 mt-2">
+          <span>할인액 1,144만 원 반영(총 상품가 2.29억)</span>
+        </p>
+      </div>
+
+      <!-- KPI 2 -->
+      <div class="kpi-gradient-2 text-white p-6 rounded-2xl card-shadow">
+        <div class="flex justify-between items-start">
+          <p class="text-emerald-100 text-sm font-medium">총 예약 모객 인원</p>
+          <div class="p-2 bg-white/10 rounded-lg"><i class="fa-solid fa-users"></i></div>
+        </div>
+        <h3 class="text-3xl font-extrabold mt-3">130<span class="text-lg font-normal">명</span> <span class="text-xl font-medium text-emerald-200">(51건)</span></h3>
+        <p class="text-xs text-emerald-100 mt-2">
+          <span>프로모션 중 전체 예약 데이터</span>
+        </p>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="kpi-gradient-3 text-white p-6 rounded-2xl card-shadow">
+        <div class="flex justify-between items-start">
+          <p class="text-amber-100 text-sm font-medium">온라인 광고 통합 ROAS</p>
+          <div class="p-2 bg-white/10 rounded-lg"><i class="fa-solid fa-chart-line"></i></div>
+        </div>
+        <h3 class="text-3xl font-extrabold mt-3">2,979<span class="text-lg font-normal">%</span></h3>
+        <p class="text-xs text-amber-100 mt-2">
+          <span>광고비 472만원 / 매체 전환 매출 1.41억원</span>
+        </p>
+      </div>
+
+      <!-- KPI 4 -->
+      <div class="kpi-gradient-4 text-white p-6 rounded-2xl card-shadow">
+        <div class="flex justify-between items-start">
+          <p class="text-purple-100 text-sm font-medium">기획전 총 방문 세션 (GA)</p>
+          <div class="p-2 bg-white/10 rounded-lg"><i class="fa-solid fa-desktop"></i></div>
+        </div>
+        <h3 class="text-3xl font-extrabold mt-3">17,198<span class="text-lg font-normal">회</span></h3>
+        <p class="text-xs text-purple-100 mt-2">
+          <span>활성 유저 12,256명 / 평균 체류 182초 (3분)</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. 차트 섹션: 일자별 모객 인원 추이 & 지역별 점유율 -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- 좌측: 일자별 모객 인원 추이 (2칸) -->
+      <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 card-shadow">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">일자별 모객 인원 추이</h2>
+          </div>
+          <span class="text-xs bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-1 rounded-md font-medium">
+            최고 모객일: 9/28 (17명)
+          </span>
+        </div>
+        <div class="relative h-72">
+          <canvas id="dailyTrendChart"></canvas>
+        </div>
+      </div>
+
+      <!-- 우측: 수정된 지역별 실제 예약 매출 점유율 (1칸) -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg font-bold text-slate-900">지역별 매출 점유율</h2>
+            <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded">총 6개 지역</span>
+          </div>
+          <div class="relative h-56 flex justify-center items-center">
+            <canvas id="regionPieChart"></canvas>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 space-y-2 text-xs text-slate-600">
+          <div class="flex justify-between font-semibold text-slate-800">
+            <span>1위 일본</span>
+            <span>1억 4,777만 원 (90명 / 68.0%)</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>2위 미주</span>
+            <span>2,609만 원 (9명 / 12.0%)</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>3위 동남아</span>
+            <span>2,274만 원 (19명 / 10.5%)</span>
+          </div>
+          <div class="flex justify-between text-slate-500">
+            <span>4위 대양주</span>
+            <span>978만 원 (7명 / 4.5%)</span>
+          </div>
+          <div class="flex justify-between text-slate-500">
+            <span>5위 유럽</span>
+            <span>815만 원 (2명 / 3.8%)</span>
+          </div>
+          <div class="flex justify-between text-slate-500">
+            <span>6위 중국</span>
+            <span>280만 원 (3명 / 1.3%)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 핵심 실적 분석 섹션: 상품 TOP 5 & 채널 기여도 -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- 상품 순위 TOP 5 (2칸) -->
+      <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 card-shadow">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-trophy text-amber-500"></i> 프로모션 예약 상품 순위 TOP 5
+          </h2>
+          <span class="text-xs text-slate-500">* 모객 인원(여행자 수) 기준 정렬</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 bg-slate-50 text-slate-600 text-xs font-semibold">
+                <th class="py-3 px-3 text-center">순위</th>
+                <th class="py-3 px-3">상품명 / 상품번호</th>
+                <th class="py-3 px-3 text-center">지역</th>
+                <th class="py-3 px-3 text-right">예약 건수</th>
+                <th class="py-3 px-3 text-right">예약 인원</th>
+                <th class="py-3 px-3 text-right">매출액 (할인적용)</th>
+                <th class="py-3 px-3 text-right">매출 비중</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-blue-50/40 transition">
+                <td class="py-3 px-3 text-center font-bold text-blue-600">1</td>
+                <td class="py-3 px-3">
+                  <p class="font-bold text-slate-900 text-sm">아오모리/도호쿠 4일</p>
+                  <p class="text-xs text-slate-400">KWTHK0004</p>
+                </td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-xs bg-blue-100 text-blue-700 font-semibold">일본</span></td>
+                <td class="py-3 px-3 text-right font-medium">16건</td>
+                <td class="py-3 px-3 text-right font-extrabold text-blue-600">43명</td>
+                <td class="py-3 px-3 text-right font-bold text-slate-900">73,012,000원</td>
+                <td class="py-3 px-3 text-right font-semibold text-emerald-600">33.6%</td>
+              </tr>
+              <tr class="hover:bg-blue-50/40 transition">
+                <td class="py-3 px-3 text-center font-bold text-slate-600">2</td>
+                <td class="py-3 px-3">
+                  <p class="font-bold text-slate-900 text-sm">오사카/교토 4일</p>
+                  <p class="text-xs text-slate-400">KWJPN0093</p>
+                </td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-xs bg-blue-100 text-blue-700 font-semibold">일본</span></td>
+                <td class="py-3 px-3 text-right font-medium">5건</td>
+                <td class="py-3 px-3 text-right font-extrabold text-slate-800">14명</td>
+                <td class="py-3 px-3 text-right font-bold text-slate-900">20,411,000원</td>
+                <td class="py-3 px-3 text-right font-semibold text-slate-600">9.4%</td>
+              </tr>
+              <tr class="hover:bg-blue-50/40 transition">
+                <td class="py-3 px-3 text-center font-bold text-slate-600">3</td>
+                <td class="py-3 px-3">
+                  <p class="font-bold text-slate-900 text-sm">규슈 온천 여행</p>
+                  <p class="text-xs text-slate-400">KWJPN0084</p>
+                </td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-xs bg-blue-100 text-blue-700 font-semibold">일본</span></td>
+                <td class="py-3 px-3 text-right font-medium">7건</td>
+                <td class="py-3 px-3 text-right font-extrabold text-slate-800">13명</td>
+                <td class="py-3 px-3 text-right font-bold text-slate-900">23,157,500원</td>
+                <td class="py-3 px-3 text-right font-semibold text-slate-600">10.7%</td>
+              </tr>
+              <tr class="hover:bg-blue-50/40 transition">
+                <td class="py-3 px-3 text-center font-bold text-slate-600">4</td>
+                <td class="py-3 px-3">
+                  <p class="font-bold text-slate-900 text-sm">푸꾸옥/나트랑 5일</p>
+                  <p class="text-xs text-slate-400">KWSEA0071</p>
+                </td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-xs bg-emerald-100 text-emerald-700 font-semibold">동남아</span></td>
+                <td class="py-3 px-3 text-right font-medium">2건</td>
+                <td class="py-3 px-3 text-right font-extrabold text-slate-800">11명</td>
+                <td class="py-3 px-3 text-right font-bold text-slate-900">12,529,000원</td>
+                <td class="py-3 px-3 text-right font-semibold text-slate-600">5.8%</td>
+              </tr>
+              <tr class="hover:bg-blue-50/40 transition">
+                <td class="py-3 px-3 text-center font-bold text-slate-600">5</td>
+                <td class="py-3 px-3">
+                  <p class="font-bold text-slate-900 text-sm">홋카이도/단풍 4일</p>
+                  <p class="text-xs text-slate-400">KWJPN0106</p>
+                </td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-xs bg-blue-100 text-blue-700 font-semibold">일본</span></td>
+                <td class="py-3 px-3 text-right font-medium">4건</td>
+                <td class="py-3 px-3 text-right font-extrabold text-slate-800">9명</td>
+                <td class="py-3 px-3 text-right font-bold text-slate-900">16,331,000원</td>
+                <td class="py-3 px-3 text-right font-semibold text-slate-600">7.5%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 예약 채널별 기여도 (1칸) -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-network-wired text-blue-600"></i> 예약 채널별 기여도
+            </h2>
+            <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded">총 3대 채널</span>
+          </div>
+
+          <div class="space-y-4">
+            <div class="p-3 bg-blue-50/60 rounded-xl border border-blue-100">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-laptop text-blue-600"></i> 본사 (온라인/직접)
+                </span>
+                <span class="text-xs font-extrabold text-blue-700">85명 (65.4%)</span>
+              </div>
+              <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden mb-1">
+                <div class="bg-blue-600 h-full rounded-full" style="width: 68.5%"></div>
+              </div>
+              <div class="flex justify-between text-xs text-slate-500">
+                <span>예약 34건</span>
+                <span class="font-bold text-slate-800">148,773,050원 (68.5%)</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-emerald-50/60 rounded-xl border border-emerald-100">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-store text-emerald-600"></i> 대리점 채널
+                </span>
+                <span class="text-xs font-extrabold text-emerald-700">32명 (24.6%)</span>
+              </div>
+              <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden mb-1">
+                <div class="bg-emerald-500 h-full rounded-full" style="width: 22.9%"></div>
+              </div>
+              <div class="flex justify-between text-xs text-slate-500">
+                <span>예약 12건</span>
+                <span class="font-bold text-slate-800">49,818,400원 (22.9%)</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-amber-50/60 rounded-xl border border-amber-100">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-handshake text-amber-600"></i> 제휴사 채널
+                </span>
+                <span class="text-xs font-extrabold text-amber-700">13명 (10.0%)</span>
+              </div>
+              <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden mb-1">
+                <div class="bg-amber-500 h-full rounded-full" style="width: 8.6%"></div>
+              </div>
+              <div class="flex justify-between text-xs text-slate-500">
+                <span>예약 5건</span>
+                <span class="font-bold text-slate-800">18,734,500원 (8.6%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 운영 부서별 예약 인원 상세 카드 -->
+    <section class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-users-gear text-indigo-600"></i> 운영 부서별 예약 인원 및 실적 현황
+          </h2>
+          <p class="text-xs text-slate-500">각 팀별 모객 인원 수, 예약 건수 및 할인적용 총 매출액</p>
+        </div>
+        <span class="text-xs bg-indigo-50 text-indigo-700 border border-indigo-200 px-2.5 py-1 rounded-md font-semibold">
+          총 130명 모객 완결
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- 1팀 -->
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start">
+              <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-700">핵심 견인</span>
+              <span class="text-xs text-slate-400">비중 81.5%</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 mt-2">상품운영1팀</h3>
+            <p class="text-xs text-slate-500">일본, 동남아 등 단거리 패키지</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 flex justify-between items-end">
+            <div>
+              <p class="text-xs text-slate-400">예약 41건</p>
+              <p class="text-xs font-semibold text-slate-700">165,384,050원</p>
+            </div>
+            <p class="text-2xl font-extrabold text-blue-600">106<span class="text-sm font-normal text-slate-600">명</span></p>
+          </div>
+        </div>
+
+        <!-- 2팀 -->
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start">
+              <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-700">고단가 미주</span>
+              <span class="text-xs text-slate-400">비중 12.3%</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 mt-2">상품운영2팀</h3>
+            <p class="text-xs text-slate-500">미주(서부/동부), 대양주 등</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 flex justify-between items-end">
+            <div>
+              <p class="text-xs text-slate-400">예약 7건</p>
+              <p class="text-xs font-semibold text-slate-700">35,862,500원</p>
+            </div>
+            <p class="text-2xl font-extrabold text-emerald-600">16<span class="text-sm font-normal text-slate-600">명</span></p>
+          </div>
+        </div>
+
+        <!-- 부산지점 -->
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start">
+              <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-700">영남권 출발</span>
+              <span class="text-xs text-slate-400">비중 4.6%</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 mt-2">부산지점</h3>
+            <p class="text-xs text-slate-500">일본(규슈), 동남아(다낭)</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 flex justify-between items-end">
+            <div>
+              <p class="text-xs text-slate-400">예약 2건</p>
+              <p class="text-xs font-semibold text-slate-700">7,928,400원</p>
+            </div>
+            <p class="text-2xl font-extrabold text-amber-600">6<span class="text-sm font-normal text-slate-600">명</span></p>
+          </div>
+        </div>
+
+        <!-- 3팀 -->
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start">
+              <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-700">프리미엄</span>
+              <span class="text-xs text-slate-400">비중 1.5%</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 mt-2">상품운영3팀</h3>
+            <p class="text-xs text-slate-500">지중해 전세기(KW44A20)</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 flex justify-between items-end">
+            <div>
+              <p class="text-xs text-slate-400">예약 1건</p>
+              <p class="text-xs font-semibold text-slate-700">8,151,000원</p>
+            </div>
+            <p class="text-2xl font-extrabold text-purple-600">2<span class="text-sm font-normal text-slate-600">명</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 온라인 유료 광고 & CRM 메시징 세부 성과표 (latebird1/2 통합) -->
+    <section class="bg-white rounded-2xl border border-slate-200 card-shadow overflow-hidden">
+      <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <h2 class="text-lg font-bold text-slate-900">온라인 유료 광고 & CRM 메시징 세부 성과표</h2>
+        <span class="text-xs text-slate-500">* latebird1, latebird2 통합 수치 반영</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-slate-200 bg-slate-100 text-slate-600 text-xs font-semibold uppercase">
+              <th class="py-3 px-4">채널 / 집행 소재</th>
+              <th class="py-3 px-4 text-right">발송 / 노출</th>
+              <th class="py-3 px-4 text-right">클릭 / 열람</th>
+              <th class="py-3 px-4 text-right">반응률(CTR)</th>
+              <th class="py-3 px-4 text-right">총비용(VAT포함)</th>
+              <th class="py-3 px-4 text-right">전환수</th>
+              <th class="py-3 px-4 text-right">매출액</th>
+              <th class="py-3 px-4 text-right">ROAS</th>
+              <th class="py-3 px-4 text-center">전략 평가</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3.5 px-4 font-semibold text-slate-900">
+                <i class="fa-solid fa-comment text-yellow-500 mr-1.5"></i> 카카오 캐러셀
+              </td>
+              <td class="py-3.5 px-4 text-right">166,796 (노출 86,219)</td>
+              <td class="py-3.5 px-4 text-right font-medium">13,549</td>
+              <td class="py-3.5 px-4 text-right text-blue-600 font-bold">15.71%</td>
+              <td class="py-3.5 px-4 text-right">2,501,940원</td>
+              <td class="py-3.5 px-4 text-right font-bold text-emerald-600">152건 (GA 5건)</td>
+              <td class="py-3.5 px-4 text-right font-bold">50,073,350원</td>
+              <td class="py-3.5 px-4 text-right text-emerald-600 font-extrabold">2,001%</td>
+              <td class="py-3.5 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-emerald-100 text-emerald-700 font-medium">유입 1위</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3.5 px-4 font-semibold text-slate-900">
+                <i class="fa-brands fa-meta text-blue-600 mr-1.5"></i> 메타 이미지 (통합)
+              </td>
+              <td class="py-3.5 px-4 text-right">151,777</td>
+              <td class="py-3.5 px-4 text-right font-medium">1,506</td>
+              <td class="py-3.5 px-4 text-right">0.99%</td>
+              <td class="py-3.5 px-4 text-right">1,498,572원</td>
+              <td class="py-3.5 px-4 text-right font-bold text-emerald-600">78건</td>
+              <td class="py-3.5 px-4 text-right font-bold">90,609,904원</td>
+              <td class="py-3.5 px-4 text-right text-emerald-600 font-extrabold">6,046%</td>
+              <td class="py-3.5 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-blue-100 text-blue-700 font-medium">매출 1위</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3.5 px-4 font-semibold text-slate-900">
+                <i class="fa-solid fa-rectangle-ad text-slate-400 mr-1.5"></i> 카카오 비즈보드 (통합)
+              </td>
+              <td class="py-3.5 px-4 text-right">4,265,992</td>
+              <td class="py-3.5 px-4 text-right font-medium">4,525</td>
+              <td class="py-3.5 px-4 text-right">0.11%</td>
+              <td class="py-3.5 px-4 text-right">721,876원</td>
+              <td class="py-3.5 px-4 text-right">2건</td>
+              <td class="py-3.5 px-4 text-right text-slate-400">-</td>
+              <td class="py-3.5 px-4 text-right text-slate-400">0%</td>
+              <td class="py-3.5 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-rose-100 text-rose-700 font-medium">효율 저조</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3.5 px-4 font-semibold text-slate-900">
+                <i class="fa-solid fa-bell text-indigo-500 mr-1.5"></i> 앱푸시 (9/11 14시 발송)
+              </td>
+              <td class="py-3.5 px-4 text-right">7,079</td>
+              <td class="py-3.5 px-4 text-right font-medium">292</td>
+              <td class="py-3.5 px-4 text-right">4.12%</td>
+              <td class="py-3.5 px-4 text-right font-medium text-slate-400">0원 (무료)</td>
+              <td class="py-3.5 px-4 text-right font-semibold text-slate-400">0건</td>
+              <td class="py-3.5 px-4 text-right text-slate-400">0원</td>
+              <td class="py-3.5 px-4 text-right text-slate-400">-</td>
+              <td class="py-3.5 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-amber-100 text-amber-700 font-medium">체류 6분</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. 기획전 유입 소스/매체 및 광고 콘텐츠 성과 보고서 (latebird1/2 통합 반영) -->
+    <section class="bg-white rounded-2xl border border-slate-200 card-shadow overflow-hidden">
+      <div class="px-6 py-5 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 bg-gradient-to-r from-blue-50/50 to-indigo-50/50">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-chart-simple text-blue-600"></i> 기획전 유입 소스/매체 및 광고 콘텐츠 성과 보고서
+          </h2>
+          <p class="text-xs text-slate-500 mt-0.5">기획전 코드 4000002989 기준 GA 유입 소스/매체 및 통합 소재별 세션·체류시간</p>
+        </div>
+        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-semibold">
+          latebird1 & latebird2 통합 수치 반영
+        </span>
+      </div>
+
+      <!-- 상단 차트: 소스/매체별 세션 & 체류시간 -->
+      <div class="p-6 border-b border-slate-100">
+        <h3 class="text-sm font-bold text-slate-800 mb-3">주요 유입 소스/매체별 세션수 및 체류시간 비교</h3>
+        <div class="relative h-64">
+          <canvas id="gaTrafficChart"></canvas>
+        </div>
+      </div>
+
+      <!-- 하단 테이블: 세션 소스/매체 & 광고콘텐츠 통합 테이블 -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-slate-200 bg-slate-50 text-slate-600 text-xs font-semibold">
+              <th class="py-3 px-4 text-center">순위</th>
+              <th class="py-3 px-4">세션 소스 / 매체</th>
+              <th class="py-3 px-4">통합 광고 콘텐츠 (수동 캠페인/콘텐츠)</th>
+              <th class="py-3 px-4 text-right">활성 사용자</th>
+              <th class="py-3 px-4 text-right">유입 세션수</th>
+              <th class="py-3 px-4 text-right">세션 비중</th>
+              <th class="py-3 px-4 text-right">평균 체류시간</th>
+              <th class="py-3 px-4 text-center">유입 특성 및 평가</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3 px-4 text-center font-bold text-blue-600">1</td>
+              <td class="py-3 px-4 font-semibold text-slate-900">kakao / da</td>
+              <td class="py-3 px-4 font-bold text-slate-800">카카오 비즈보드 (통합)</td>
+              <td class="py-3 px-4 text-right">5,461명</td>
+              <td class="py-3 px-4 text-right font-extrabold text-blue-600">6,041회</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-600">23.4%</td>
+              <td class="py-3 px-4 text-right text-rose-500 font-semibold">15.0초</td>
+              <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-rose-100 text-rose-700 font-medium">대량 유입 / 저체류</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3 px-4 text-center font-bold text-slate-600">2</td>
+              <td class="py-3 px-4 font-semibold text-slate-900">owned / sns</td>
+              <td class="py-3 px-4 font-bold text-slate-800">카카오톡 채널 하단메뉴 (통합)</td>
+              <td class="py-3 px-4 text-right">3,498명</td>
+              <td class="py-3 px-4 text-right font-extrabold text-slate-800">3,997회</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-600">15.5%</td>
+              <td class="py-3 px-4 text-right font-semibold">27.3초</td>
+              <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-emerald-100 text-emerald-700 font-medium">자사 채널 1위</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3 px-4 text-center font-bold text-slate-600">3</td>
+              <td class="py-3 px-4 font-semibold text-slate-900">naver / br_m</td>
+              <td class="py-3 px-4 font-bold text-slate-800">네이버 브랜드검색 (MO)</td>
+              <td class="py-3 px-4 text-right">2,504명</td>
+              <td class="py-3 px-4 text-right font-extrabold text-slate-800">2,710회</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-600">10.5%</td>
+              <td class="py-3 px-4 text-right font-semibold">32.3초</td>
+              <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-blue-100 text-blue-700 font-medium">모바일 자연 유입</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3 px-4 text-center font-bold text-slate-600">4</td>
+              <td class="py-3 px-4 font-semibold text-slate-900">(direct) / (none)</td>
+              <td class="py-3 px-4 text-slate-500">직접 유입 / 북마크 / URL 직접 입력</td>
+              <td class="py-3 px-4 text-right">2,055명</td>
+              <td class="py-3 px-4 text-right font-extrabold text-slate-800">2,445회</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-600">9.5%</td>
+              <td class="py-3 px-4 text-right font-semibold">43.6초</td>
+              <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-slate-700 font-medium">안정적 직접 방문</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3 px-4 text-center font-bold text-slate-600">5</td>
+              <td class="py-3 px-4 font-semibold text-slate-900">meta / da</td>
+              <td class="py-3 px-4 font-bold text-slate-800">메타 DA 배너 (통합)</td>
+              <td class="py-3 px-4 text-right">1,947명</td>
+              <td class="py-3 px-4 text-right font-extrabold text-slate-800">2,388회</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-600">9.3%</td>
+              <td class="py-3 px-4 text-right text-emerald-600 font-semibold">37.0초</td>
+              <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-purple-100 text-purple-700 font-medium">고관여 실구매 유입</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3 px-4 text-center font-bold text-slate-600">6</td>
+              <td class="py-3 px-4 font-semibold text-slate-900">kakao / message</td>
+              <td class="py-3 px-4 font-bold text-slate-800">카카오 캐러셀/메시지 (통합)</td>
+              <td class="py-3 px-4 text-right">2,282명</td>
+              <td class="py-3 px-4 text-right font-extrabold text-slate-800">2,349회</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-600">9.1%</td>
+              <td class="py-3 px-4 text-right font-semibold">34.2초</td>
+              <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-amber-100 text-amber-700 font-medium">메시지 즉시 반응</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3 px-4 text-center font-bold text-slate-600">7</td>
+              <td class="py-3 px-4 font-semibold text-slate-900">owned / message</td>
+              <td class="py-3 px-4 font-bold text-slate-800">자사 앱푸시 (Late Bird)</td>
+              <td class="py-3 px-4 text-right">1,015명</td>
+              <td class="py-3 px-4 text-right font-extrabold text-slate-800">1,317회</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-600">5.1%</td>
+              <td class="py-3 px-4 text-right font-semibold">25.9초</td>
+              <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-indigo-100 text-indigo-700 font-medium">자사 앱 유저 인입</span></td>
+            </tr>
+            <tr class="hover:bg-blue-50/40 transition">
+              <td class="py-3 px-4 text-center font-bold text-slate-600">8</td>
+              <td class="py-3 px-4 font-semibold text-slate-900">naver / br_pc</td>
+              <td class="py-3 px-4 font-bold text-slate-800">네이버 브랜드검색 (PC)</td>
+              <td class="py-3 px-4 text-right">926명</td>
+              <td class="py-3 px-4 text-right font-extrabold text-slate-800">1,036회</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-600">4.0%</td>
+              <td class="py-3 px-4 text-right text-emerald-600 font-extrabold">86.0초</td>
+              <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-xs bg-emerald-100 text-emerald-700 font-medium">최장 체류 (심층 탐색)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 7. [수정 반영] 9월 Late Bird 프로모션 종합 총평 및 시사점 (3대 영역 + 데이터 분석 워크플로우 제언) -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-7 rounded-2xl card-shadow border border-slate-700">
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-2">
+          <span class="p-2 bg-blue-500/20 text-blue-400 rounded-lg text-sm"><i class="fa-solid fa-clipboard-check"></i></span>
+          <h2 class="text-xl font-bold">9월 Late Bird 프로모션 종합 총평 및 시사점</h2>
+        </div>
+        <span class="text-xs bg-white/10 text-slate-300 px-3 py-1 rounded-md border border-white/10">3대 영역 종합 평가</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 1. 실적에 대한 부분 -->
+        <div class="p-5 bg-white/5 rounded-xl border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-2 text-emerald-400">
+              <i class="fa-solid fa-chart-line text-base"></i>
+              <h3 class="font-bold text-white text-base">1. 실적에 대한 부분</h3>
+            </div>
+            <div class="text-xs text-slate-300 leading-relaxed space-y-2 mt-2">
+              <p>• <strong>핵심 성과</strong>: 총 모객 <strong>130명(51건)</strong>, 할인액 1,144만 원을 반영한 최종 예약 매출 <strong>2억 1,733만 원</strong>을 달성했습니다.</p>
+              <p>• <strong>지역 집중도</strong>: 전체 매출의 <strong>68.0%(1억 4,777만 원, 90명)</strong>가 일본에 집중되었으며, 단일 상품인 '아오모리/도호쿠 4일' 하나로만 7,301만 원(33.6%)을 견인했습니다.</p>
+              <p>• <strong>채널 기여</strong>: 본사 온라인 직판이 매출의 <strong>68.5%(1.49억 원)</strong>를 주도하며 핵심 판매 창구 역할을 했고, 대리점(22.9%)과 제휴사(8.6%)가 오프라인 및 제휴 고객을 유치하며 안정적으로 실적을 뒷받침했습니다.</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 text-xs text-emerald-300 font-semibold">
+            ✔ 단거리 테마 중심의 높은 전환과 안정적 매출 달성
+          </div>
+        </div>
+
+        <!-- 2. 전체 광고에 대한 부분 -->
+        <div class="p-5 bg-white/5 rounded-xl border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-2 text-blue-400">
+              <i class="fa-solid fa-bullhorn text-base"></i>
+              <h3 class="font-bold text-white text-base">2. 전체 광고에 대한 부분</h3>
+            </div>
+            <div class="text-xs text-slate-300 leading-relaxed space-y-2 mt-2">
+              <p>• <strong>단계별 퍼널 작동</strong>: <strong>카카오 비즈보드</strong>로 대규모 노출(426만 회)과 최다 클릭(6,041 세션)을 확보해 기획전 유입을 늘렸고, <strong>카카오 캐러셀</strong>(152건 전환, ROAS 2,001%)과 <strong>메타 이미지</strong>(78건 전환, ROAS 6,046%)로 전환 타겟에게 집중 홍보하여 실질적 전환을 일으켰습니다.</p>
+              <p>• <strong>리타게팅 과제</strong>: 네이버 PC 브검(체류 86초), 자사 앱푸시(체류 374초), 메타 DA(체류 37초) 등 <strong>관심을 보이는(체류시간이 긴) 타겟</strong>을 선별하여 프로모션 마감 전 리타게팅 광고 및 리마인드 푸시로 한 번 더 유입시키는 과정이 필요합니다.</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 text-xs text-blue-300 font-semibold">
+            ✔ 유입(비즈보드) ➔ 전환(캐러셀·메타) ➔ 고관여 리타게팅 연계 제언
+          </div>
+        </div>
+
+        <!-- 3. 전체적인 부분 -->
+        <div class="p-5 bg-white/5 rounded-xl border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-2 text-amber-400">
+              <i class="fa-solid fa-compass text-base"></i>
+              <h3 class="font-bold text-white text-base">3. 전체적인 부분</h3>
+            </div>
+            <div class="text-xs text-slate-300 leading-relaxed space-y-2 mt-2">
+              <p>• <strong>기획 의도 부합</strong>: 결과적으로 본 프로모션은 예약부터 출발까지의 <strong>리드타임(Lead-time)이 짧은 단거리 패키지 상품(일본·동남아 비중 78.5%)을 위한 기획</strong>이었으며, 비수기 잔여 좌석을 빠르게 소진시키고자 했던 <strong>당초 기획 의도에 매우 잘 부합한 프로모션</strong>이라 평가할 수 있습니다.</p>
+              <p>• <strong>향후 고도화</strong>: 비수기 시즌성 테마(단풍/온천)와 결합된 단거리 상품 라인업을 강화하고, 장거리 상품은 조기 모객(얼리버드) 위주로 이원화 운영하는 전략이 유효합니다.</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 text-xs text-amber-300 font-semibold">
+            ✔ 리드타임 짧은 단거리 상품 맞춤형 성공 프로모션
+          </div>
+        </div>
+      </div>
+
+      <!-- 하단 데이터 분석 & 대시보드 자동화 제언 박스 -->
+      <div class="mt-6 pt-5 border-t border-slate-700/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
+        <div class="flex items-center gap-3">
+          <span class="p-2 bg-purple-500/20 text-purple-400 rounded-lg text-sm"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+          <div>
+            <h4 class="text-sm font-bold text-white">데이터 분석 대시보드 구축에 대한 향후 제언</h4>
+            <p class="text-xs text-slate-400 mt-0.5">
+              원천 데이터(예약 CSV, 광고 리포트, GA 로그)를 업로드하고 자연어로 질문하는 것만으로 주요 KPI와 그래프가 포함된 분석 대시보드가 즉시 자동 생성되는 인터랙티브 분석 워크플로우를 도입할 경우, 마케팅 보고서 작성 공수를 대폭 절감하고 실시간 의사결정 속도를 획기적으로 개선할 수 있습니다.
+            </p>
+          </div>
+        </div>
+        <span class="text-xs px-2.5 py-1 bg-purple-500/30 text-purple-200 rounded border border-purple-400/30 whitespace-nowrap self-end sm:self-auto">
+          AI 분석 파이프라인
+        </span>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // 1. 일자별 모객 인원 추이 라인 차트
+    const dailyCtx = document.getElementById('dailyTrendChart').getContext('2d');
+    new Chart(dailyCtx, {
+      type: "line",
+      data: {
+        labels: ['09/10', '09/11', '09/12', '09/13', '09/14', '09/15', '09/16', '09/17', '09/18', '09/20', '09/21', '09/22', '09/23', '09/28', '09/29', '09/30'],
+        datasets: [{
+          label: "예약 인원 (명)",
+          data: [11, 10, 2, 8, 14, 3, 16, 2, 6, 4, 9, 6, 8, 17, 8, 6],
+          fill: true,
+          backgroundColor: "rgba(37, 99, 235, 0.08)",
+          borderColor: "#2563eb",
+          tension: 0.35,
+          borderWidth: 2.5,
+          pointRadius: 4,
+          pointBackgroundColor: "#2563eb"
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: "예약 인원 (명)" } }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // 2. 지역별 매출 비중 도넛 차트
+    const regionCtx = document.getElementById('regionPieChart').getContext('2d');
+    new Chart(regionCtx, {
+      type: "doughnut",
+      data: {
+        labels: ['일본', '미주', '동남아', '대양주', '유럽', '중국'],
+        datasets: [{
+          data: [14777, 2609, 2274, 978, 815, 280],
+          backgroundColor: ['#2563eb', '#f59e0b', '#10b981', '#06b6d4', '#8b5cf6', '#cbd5e1'],
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+        },
+        cutout: "65%"
+      }
+    });
+
+    // 3. 기획전 유입 GA 복합 차트
+    const gaTrafficCtx = document.getElementById('gaTrafficChart').getContext('2d');
+    new Chart(gaTrafficCtx, {
+      type: 'bar',
+      data: {
+        labels: [
+          '카카오 비즈보드(da)',
+          '카카오 채널메뉴(sns)',
+          '네이버 모바일 브검',
+          '직접 유입(direct)',
+          '메타 DA 배너',
+          '카카오 메시지',
+          '자사 앱푸시',
+          '네이버 PC 브검'
+        ],
+        datasets: [
+          {
+            type: 'bar',
+            label: '유입 세션수 (회)',
+            data: [6041, 3997, 2710, 2445, 2388, 2349, 1317, 1036],
+            backgroundColor: '#3b82f6',
+            borderRadius: 6,
+            yAxisID: 'y'
+          },
+          {
+            type: 'line',
+            label: '평균 체류시간 (초)',
+            data: [15.0, 27.3, 32.3, 43.6, 37.0, 34.2, 25.9, 86.0],
+            borderColor: '#10b981',
+            backgroundColor: '#10b981',
+            borderWidth: 2.5,
+            pointRadius: 5,
+            yAxisID: 'y1'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            position: 'left',
+            title: { display: true, text: '유입 세션수 (회)' }
+          },
+          y1: {
+            beginAtZero: true,
+            position: 'right',
+            grid: { drawOnChartArea: false },
+            title: { display: true, text: '평균 체류시간 (초)' }
+          }
+        },
+        plugins: {
+          legend: { position: 'top' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
